@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Miguel González @migonzalvar" />
+  <title>Python 3, primeros pasos</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+    </style>
+    <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" media="print" href="reveal.js/css/print/pdf.css" />
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Python 3, primeros pasos</h1>
+    <h2 class="author">Miguel González <span class="citation" data-cites="migonzalvar">@migonzalvar</span></h2>
+    <h3 class="date">19 Febrero 2015</h3>
+</section>
+
+<section><section id="instalación" class="titleslide slide level1"><h1>Instalación</h1></section><section id="linux" class="slide level2">
+<h1>Linux</h1>
+<ul>
+<li class="fragment"><p>Ya está!</p>
+<pre class="bash-session"><code>vagrant@vagrant-ubuntu-trusty-64:~$ python3
+Python 3.4.0 (default, Apr 11 2014, 13:05:11) 
+[GCC 4.8.2] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; 
+vagrant@vagrant-ubuntu-trusty-64:~$ which python3
+/usr/bin/python3</code></pre></li>
+</ul>
+</section><section id="windows" class="slide level2">
+<h1>Windows</h1>
+<ul>
+<li class="fragment"><p><a href="https://www.python.org/ftp/python/3.4.2/python-3.4.2.amd64.msi">Instalador MSI</a></p>
+<p>Más info en https://www.python.org/downloads/windows/</p></li>
+</ul>
+</section><section id="mac-os-x" class="slide level2">
+<h1>Mac OS X</h1>
+<ul>
+<li class="fragment"><p><a href="https://www.python.org/ftp/python/3.4.2/python-3.4.2-macosx10.6.pkg">Instalador pkg</a></p></li>
+<li class="fragment"><p><a href="http://brew.sh/">Homebrew</a></p>
+<pre class="shell-session"><code>$ brew install python3</code></pre></li>
+</ul>
+</section><section id="intérpretes" class="slide level2">
+<h1>Intérpretes</h1>
+</section><section id="estándar" class="slide level2">
+<h1>Estándar</h1>
+<pre class="shell-session"><code>$ python
+&gt;&gt;&gt;</code></pre>
+</section><section id="bpython" class="slide level2">
+<h1>bpython</h1>
+<ul>
+<li class="fragment"><p>Instalación</p>
+<pre class="shell-session"><code>$ sudo apt-get install bpython3</code></pre>
+<p><a href="http://www.bpython-interpreter.org/">Más info</a></p></li>
+<li class="fragment"><p>Demo</p></li>
+</ul>
+</section><section id="otros" class="slide level2">
+<h1>Otros</h1>
+<ul>
+<li class="fragment"><a href="http://ipython.org/">ipython notebook</a></li>
+<li class="fragment"><a href="http://repl.it/languages/Python3">repl.it</a></li>
+</ul>
+</section></section>
+<section><section id="escribir-programas" class="titleslide slide level1"><h1>Escribir programas</h1></section><section id="primero" class="slide level2">
+<h1>Primero</h1>
+<ul>
+<li class="fragment"><p>Cabecera para hacer un archivo ejecutable. Funciona en Windows!</p>
+<pre><code>#!/bin/env python3
+...</code></pre></li>
+<li class="fragment"><p><code>chmod +x</code></p></li>
+<li class="fragment"><p>Alternativamente <code>python nombre.py</code></p></li>
+</ul>
+</section><section id="tabs-4-espacios" class="slide level2">
+<h1><del>tabs</del> 4 espacios</h1>
+</section><section id="vim" class="slide level2">
+<h1>Vim</h1>
+<pre><code>set shiftwidth=4  &quot; operation &gt;&gt; indents 4 columns; &lt;&lt; unindents 4 columns
+set tabstop=4     &quot; a hard TAB displays as 4 columns
+set expandtab     &quot; insert spaces when hitting TABs
+set softtabstop=4 &quot; insert/delete 4 spaces when hitting a TAB/BACKSPACE
+set shiftround    &quot; round indent to multiple of &#39;shiftwidth&#39;
+set autoindent    &quot; align the new line indent with the previous line</code></pre>
+</section><section id="sublime" class="slide level2">
+<h1>Sublime</h1>
+<ul>
+<li class="fragment"><p>Preferences &gt; Settings - User</p>
+<pre class="sourceCode json"><code class="sourceCode json">{
+    <span class="er">...</span>,
+    <span class="dt">&quot;translate_tabs_to_spaces&quot;</span>: <span class="dv">true</span>
+}</code></pre></li>
+</ul>
+</section><section id="pycharm" class="slide level2">
+<h1>PyCharm</h1>
+</section><section class="slide level2">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/639hcsfR4vU" frameborder="0" allowfullscreen></iframe>
+
+</section></section>
+<section><section id="continuar" class="titleslide slide level1"><h1>Continuar</h1></section><section id="recursos" class="slide level2">
+<h1>Recursos</h1>
+<ul>
+<li class="fragment">https://docs.python.org/3/tutorial/</li>
+<li class="fragment">https://docs.python.org/3/library/</li>
+<li class="fragment">http://docs.python-guide.org/en/latest/</li>
+<li class="fragment">http://migonzalvar.eu/curso-python3/</li>
+</ul>
+</section></section>
+<section><section id="bonus-track" class="titleslide slide level1"><h1>Bonus track</h1></section><section id="pip" class="slide level2">
+<h1>pip</h1>
+<ul>
+<li class="fragment"><p>Gestor de paquetes</p></li>
+<li class="fragment"><p>Incluida en Python 3 <strong>salvo Ubuntu</strong></p>
+<pre class="shell-session"><code>$ python3 -m pip</code></pre></li>
+<li class="fragment"><p>Instalación en Ubuntu</p>
+<pre class="shell-session"><code>$ sudo apt-get install python3-pip</code></pre>
+<pre class="shell-session"><code>$ curl https://bootstrap.pypa.io/get-pip.py | python3</code></pre></li>
+<li class="fragment"><p>Uso</p>
+<pre class="shell-session"><code>$ pip3 install youtube-dl
+...
+$ pip3 install --upgrade youtube-dl
+...
+$ pip3 uninstall youtube-dl</code></pre></li>
+</ul>
+</section><section id="pyenv" class="slide level2">
+<h1>pyenv</h1>
+<ul>
+<li class="fragment"><p>Era una herramienta independiente <code>virtualenv</code> ahora incluida en la librería estándar como <code>pyvenv</code> o <code>python3 -m venv</code></p></li>
+<li class="fragment"><p>Uso</p>
+<pre class="shell-session"><code>$ python3 -m venv /path/to/venv
+$ source /path/to/venv/bin/activate
+(venv)$ </code></pre></li>
+<li class="fragment"><p>Workaround en Ubuntu trusty 14.04</p>
+<pre class="shell-session"><code>$ python3 -m venv --without-pip /path/to/venv
+$ curl https://bootstrap.pypa.io/get-pip.py | /path/to/venv/bin/python</code></pre></li>
+</ul>
+</section></section>
+<section><section id="gracias" class="titleslide slide level1"><h1>Gracias!</h1></section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+//          { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+    </script>
+  </body>
+</html>
