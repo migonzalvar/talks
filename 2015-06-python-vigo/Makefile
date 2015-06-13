@@ -3,7 +3,7 @@
 ALL: install compile open
 
 compile:
-	pandoc --to=revealjs --standalone --variable=revealjs-url:reveal.js virtualenvs.md --output=index.html
+	pandoc -t revealjs --template ./default.revealjs -s -V revealjs-url:reveal.js -V theme:beige virtualenvs.md -o index.html
 
 clean:
 	rm -f reveal.js.tar.gz
