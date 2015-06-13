@@ -16,7 +16,7 @@ minify:
 	[ ! -e reveal.js/js/reveal.min.js ] && (cd reveal.js/js && ln -s reveal.js reveal.min.js) || true
 
 open:
-	xdg-open virtualenvs.html
+	xdg-open index.html
 
 watch:
 	browser-sync start --server --files='*.html'
