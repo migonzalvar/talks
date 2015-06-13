@@ -1,0 +1,28 @@
+.PHONY: clean compile install minify open
+
+ALL: install compile open
+
+compile:
+	pandoc --to=revealjs --standalone --variable=revealjs-url:reveal.js virtualenvs.md --output=virtualenvs.html
+
+clean:
+	rm -f reveal.js.tar.gz
+	rm -Rf reveal.js
+
+install: reveal.js.tar.gz reveal.js minify
+
+minify:
+	[ ! -e reveal.js/css/reveal.min.css ] && (cd reveal.js/css && ln -s reveal.css reveal.min.css) || true
+	[ ! -e reveal.js/js/reveal.min.js ] && (cd reveal.js/js && ln -s reveal.js reveal.min.js) || true
+
+open:
+	xdg-open virtualenvs.html
+
+reveal.js.tar.gz:
+	wget -O reveal.js.tar.gz https://github.com/hakimel/reveal.js/archive/3.1.0.tar.gz
+
+reveal.js: reveal.js.tar.gz
+	tar xzf reveal.js.tar.gz
+	mv reveal.js-3.1.0/ reveal.js
+
+
