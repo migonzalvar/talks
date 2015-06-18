@@ -234,13 +234,37 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
+# Ejemplos
+ 
+ 
+## Práctica 1
+
+- Crear virtualenv.
+- Instalar paquetes.
+- Crear archivo `requirements.txt`.
+
+## Práctica 2
+
+- Crear entorno virtual pero con Python 3.4.
+- Instalar los mismos paquetes que en la práctica 1.
+
 # Herramientas
 
-## virtualenvwrapper
+### pip
 
-## autoenv
+Instalar paquetes
 
-## pythonz
+### virtualenvwrapper
+
+Comandos para facilitar la gestión de entornos.
+
+### autoenv
+
+Auto activa el entorno al entrar y lo desactiva al salir.
+
+### pythonz
+
+
 
 ## Enlaces
 
@@ -252,7 +276,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 - Ejemplo Ubuntu 14.04
 
-### pip
+## pip
 
 ```
 $ sudo apt-get install python-pip python-virtualenv
@@ -260,34 +284,60 @@ $ pip install --user pip --upgrade
 $ export PATH=$HOME/.local/bin:$PATH
 ```
 
-### virtualenvwrapper
+## virtualenvwrapper
 
 ```
 $ pip install --user virtualenvwrapper
+$ cd ~/.Envs
+$ vim .bashrc
+...
+export WORKON_HOME=~/Envs
+source $HOME/.local/bin/virtualenvwrapper.sh
 ```
 
-### pythonz
+---
+
+```
+$ mkvirtualenv mi-entorno
+New python executable in mi-entorno/bin/python
+Installing setuptools, pip...done.
+(mi-entorno)$ ls ~/Envs/ -l
+total 52
+...
+drwxrwxr-x 5 vagrant vagrant 4096 Jun 18 16:46 mi-entorno
+...
+```
+
+```
+(mi-entorno)$ deactivate 
+```
+
+```
+$ rmvirtualenv mi-entorno
+Removing mi-entorno...
+```
+
+## pythonz
 
 ```
 $ sudo apt-get install build-essential zlib1g-dev libbz2-dev libssl-dev libreadline-dev \
   libncurses5-dev libsqlite3-dev libgdbm-dev libdb-dev libexpat-dev libpcap-dev liblzma-dev \
   libpcre3-dev
 $ curl -kL https://raw.github.com/saghul/pythonz/master/pythonz-install | bash
+
 ```
 
-    3
-    4  echo $PATH
-    5  vim .bashrc
-    6  pip install --user pip
-    7  sudo apt-get install python-pip python-virtualenv
-    8  pip install --user pip
-    9  pip install --user pip --upgrade
-   10  ls -la
-   11  .local/bin/pip --version
-   12  vim .bashrc
-   13  echo $PATH
-   14  vim .bashrc
-   15  history
+---
 
+```
+$ pythonz install 2.7.10
+...
+$ pythonz install 3.4.3
+...
+```
+
+```
+$ mkvirtualenv -p $(pythonz locate 2.7.10) mi-entorno-python2.7.10
+```
 
 # Gracias
