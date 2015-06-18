@@ -39,7 +39,7 @@ Hola mundo!
 
 ```
 $ cat hola.py
-#!/usr/bin/python
+#!/usr/bin/env python
 print('Hola mundo!')
 $ chmod +x hola.py
 $ ./hola.py
@@ -52,19 +52,191 @@ Hola mundo!
 
 <span style='color:red'>¡Doble click!</span>
 
-# Entonces...
+## ¿Y que estoy ejecutando?
 
-## Creación de un entorno virtual
+1. La versión del intérprete de python en el PATH
+
+2. Las librerías instaladas en la carpeta `site-packages`
+
+## Un vistazo a un ubuntu
 
 ```
-$ virtualenv
+$ python --version
+Python 2.7.6
+$ which python
+/usr/bin/python
+$ ls -la /usr/bin/python2.7
+-rwxr-xr-x 1 root root 3349512 Mar 22  2014 /usr/bin/python2.7
+$ file /usr/bin/python2.7
+/usr/bin/python2.7: ELF 64-bit LSB  executable, x86-64, ...
+```
+---
+
+```
+$ python
+Python 2.7.6 (default, Mar 22 2014, 22:59:56)
+[GCC 4.8.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import sys
+>>> sys.path
+['', '/usr/lib/python2.7', '/usr/lib/python2.7/plat-x86_64-linux-gnu',
+ '/usr/lib/python2.7/lib-tk', '/usr/lib/python2.7/lib-old',
+ '/usr/lib/python2.7/lib-dynload', '/home/vagrant/.local/lib/python2.7/site-packages',
+ '/usr/local/lib/python2.7/dist-packages', '/usr/lib/python2.7/dist-packages']
+```
+
+---
+
+```
+$ tree /usr/lib/python2.7/dist-packages/  -L 1 -P *py -I *.egg-info
+/usr/lib/python2.7/dist-packages/
+|-- apport
+|-- apport_python_hook.py
+|-- apt
+|-- aptsources
+|-- axi
+|-- chardet
+|-- Cheetah
+|-- cloudinit
+|-- colorama
+|-- configobj.py
+|-- Crypto
+|-- curl
+|-- dbus
+|-- deb822.py
+|-- debconf.py
+|-- debian
+|-- debian_bundle
+|-- distlib
+|-- easy_install.py
+|-- gi
+|-- html5lib
+|-- httplib2
+|-- jsonpatch.py
+|-- jsonpointer.py
+|-- keyring
+|-- landscape
+|-- launchpadlib
+|-- lazr
+|-- lsb_release.py
+|-- _markerlib
+|-- oauth
+|-- OpenSSL
+|-- pip
+|-- pkg_resources.py
+|-- prettytable.py
+|-- problem_report.py
+|-- pygtkcompat
+|-- requests
+|-- secretstorage
+|-- serial
+|-- setuptools
+|-- simplejson
+|-- six.py
+|-- twisted
+|-- urllib3
+|-- validate.py
+|-- virtualenv.py
+|-- wadllib
+|-- wheel
+|-- xapian
+|-- yaml
+`-- zope
+
+38 directories, 14 files
+```
+
+# Entonces...
+
+## Disclaimer
+
+Algunas de las herramientas utilizadas hay que instalarlas y
+configurarlas. Ver refrencias al final.
+
+## Creación, activación y deasctivación entorno virtual
+
+```
+$ virtualenv mi-entorno
+New python executable in mi-entorno/bin/python
+Installing setuptools, pip...done.
+$ source mi-entorno/bin/activate
+(mi-entorno)$ which python
+/home/vagrant/mi-entorno/bin/python
+```
+
+```
+(mi-entorno)$ deactivate
+$
+```
+
+## Internals
+
+```
+$ cd mi-entorno
+$ tree -d -L 4 -I *.dist-info
+.
+|-- bin
+|-- lib
+|   `-- python2.7
+|       |-- distutils
+|       |-- encodings -> /usr/lib/python2.7/encodings
+|       |-- lib-dynload -> /usr/lib/python2.7/lib-dynload
+|       `-- site-packages
+|           |-- _markerlib
+|           |-- pip
+|           `-- setuptools
+`-- local
+    |-- bin -> /home/vagrant/mi-entorno/bin
+    `-- lib -> /home/vagrant/mi-entorno/lib
+```
+
+---
+
+
+```
+$ cat bin/activate
+
+...
+
+VIRTUAL_ENV="/home/vagrant/mi-entorno"
+export VIRTUAL_ENV
+
+...
+
+_OLD_VIRTUAL_PATH="$PATH"
+PATH="$VIRTUAL_ENV/bin:$PATH"
+export PATH
+
+...
+
+hash -r 2>/dev/null
+```
+
+---
+
+```
+$ /home/vagrant/mi-entorno/bin/python
+Python 2.7.6 (default, Mar 22 2014, 22:59:56)
+[GCC 4.8.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import sys
+>>> sys.path
+['', '/home/vagrant/mi-entorno/lib/python2.7',
+ '/home/vagrant/mi-entorno/lib/python2.7/plat-x86_64-linux-gnu',
+ '/home/vagrant/mi-entorno/lib/python2.7/lib-tk',
+ '/home/vagrant/mi-entorno/lib/python2.7/lib-old',
+ '/home/vagrant/mi-entorno/lib/python2.7/lib-dynload',
+ '/usr/lib/python2.7',
+ '/usr/lib/python2.7/plat-x86_64-linux-gnu',
+ '/usr/lib/python2.7/lib-tk',
+ '/home/vagrant/mi-entorno/local/lib/python2.7/site-packages',
+ '/home/vagrant/mi-entorno/lib/python2.7/site-packages']
+>>>
 ```
 
 # Herramientas
 
 ## virtualenvwrapper
-
-Comandos
 
 ## autoenv
 
