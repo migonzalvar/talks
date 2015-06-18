@@ -235,8 +235,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 
 # Ejemplos
- 
- 
+
 ## Práctica 1
 
 - Crear virtualenv.
@@ -250,6 +249,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 # Herramientas
 
+## Resumen
+
 ### pip
 
 Instalar paquetes
@@ -258,19 +259,9 @@ Instalar paquetes
 
 Comandos para facilitar la gestión de entornos.
 
-### autoenv
-
-Auto activa el entorno al entrar y lo desactiva al salir.
-
 ### pythonz
 
-
-
-## Enlaces
-
-- [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/index.html)
-- [autoenv](https://github.com/kennethreitz/autoenv)
-- [pythonz](https://github.com/saghul/pythonz)
+Gestiona diversas versiones de Python.
 
 ## Bootstraping
 
@@ -339,5 +330,11 @@ $ pythonz install 3.4.3
 ```
 $ mkvirtualenv -p $(pythonz locate 2.7.10) mi-entorno-python2.7.10
 ```
+
+## Enlaces
+
+- [pip](https://pip.pypa.io/en/stable/)
+- [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/index.html)
+- [pythonz](https://github.com/saghul/pythonz)
 
 # Gracias
