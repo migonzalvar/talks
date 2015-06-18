@@ -14,28 +14,29 @@
 ## Ventajas
 
 1. Entorno independiente con posibilidad de tener distintas
-   versiones a las del sistema (paquetes e intérprete).
+   versiones de paquetes a las del sistema.
 
-2. No son necesarios permisos de administrador.
+2. No son necesarios permisos de administrador para instalar paquetes.
 
-3. Herramientas para recrear el entorno en otros equipos.
+3. Herramientas para recrear el entorno en otras máquinas por ejemplo
+   servidor de producción.
 
 # Por el principio
 
 ## Pythons
 
-- Es un lenguaje interpretado
+- Es un lenguaje interpretado.
 
 ```
 $ python hola.py
 Hola mundo!
 ```
 
----
+## Pseudo ejecutable
 
-- Se puede hacer un pseudo ejecutable
+### Linux
 
-*Linux*
+- Sheebang (#!) más permisos de ejecución.
 
 ```
 $ cat hola.py
@@ -46,30 +47,38 @@ $ ./hola.py
 Hola mundo!
 ```
 
-*Windows*
+### Windows
 
-. . .
+- <span style='color:red'>¡Doble click!</span>
 
-<span style='color:red'>¡Doble click!</span>
+- Aunque el sheebang también es importante.
 
 ## ¿Y que estoy ejecutando?
 
-1. La versión del intérprete de python en el PATH
+1. Intérprete Python en el `PATH` del sistema.
 
-2. Las librerías instaladas en la carpeta `site-packages`
+2. Librerías instaladas en subcarpetas (por ejemplo  carpeta `site-packages`)
+   definidas en el `PYTHONPATH`.
 
 ## Un vistazo a un ubuntu
 
 ```
 $ python --version
 Python 2.7.6
+```
+
+```
 $ which python
 /usr/bin/python
+```
+
+```
 $ ls -la /usr/bin/python2.7
 -rwxr-xr-x 1 root root 3349512 Mar 22  2014 /usr/bin/python2.7
 $ file /usr/bin/python2.7
 /usr/bin/python2.7: ELF 64-bit LSB  executable, x86-64, ...
 ```
+
 ---
 
 ```
@@ -79,10 +88,15 @@ Python 2.7.6 (default, Mar 22 2014, 22:59:56)
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import sys
 >>> sys.path
-['', '/usr/lib/python2.7', '/usr/lib/python2.7/plat-x86_64-linux-gnu',
- '/usr/lib/python2.7/lib-tk', '/usr/lib/python2.7/lib-old',
- '/usr/lib/python2.7/lib-dynload', '/home/vagrant/.local/lib/python2.7/site-packages',
- '/usr/local/lib/python2.7/dist-packages', '/usr/lib/python2.7/dist-packages']
+['',
+ '/usr/lib/python2.7',
+ '/usr/lib/python2.7/plat-x86_64-linux-gnu',
+ '/usr/lib/python2.7/lib-tk',
+ '/usr/lib/python2.7/lib-old',
+ '/usr/lib/python2.7/lib-dynload',
+ '/home/vagrant/.local/lib/python2.7/site-packages',
+ '/usr/local/lib/python2.7/dist-packages',
+ '/usr/lib/python2.7/dist-packages']
 ```
 
 ---
@@ -146,12 +160,12 @@ $ tree /usr/lib/python2.7/dist-packages/  -L 1 -P *py -I *.egg-info
 38 directories, 14 files
 ```
 
-# Entonces...
+# Empezamos... entornos virtuales
 
 ## Disclaimer
 
 Algunas de las herramientas utilizadas hay que instalarlas y
-configurarlas. Ver refrencias al final.
+configurarlas. Ver referencias al final.
 
 ## Creación, activación y deasctivación entorno virtual
 
