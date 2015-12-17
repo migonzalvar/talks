@@ -146,6 +146,8 @@ def send_mail(recipient, subject, message):
     ...
 ```
 
+## Y en forms
+
 ```python
         send_mail(recipient, subject, message)
 ```
