@@ -10,6 +10,9 @@ gmail --> Server : ok
 Server --> Browser : 201 Created
 @enduml
 ```
+----
+
+![](fig1.png)
 
 ## Desacoplar usando un worker
 
@@ -22,6 +25,10 @@ Server -> gmail
 gmail --> Server : ok
 @enduml
 ```
+
+----
+
+![](fig2.png)
 
 ## Broker
 
@@ -36,6 +43,10 @@ HTTP - [Django server]
 6379 - [redis]
 @enduml
 ```
+
+----
+
+![](fig3.png)
 
 ## Show me the code
 
@@ -67,8 +78,6 @@ tree -P '**py'
 
 ## Turbo
 
-https://asciinema.org/a/5hliyk9hnuvvlyfi0pj34mzin
-
 ```
 git clone git@github.com:migonzalvar/pythonvigo.git
 cd pythonvigo
@@ -83,6 +92,9 @@ cd pythonvigo
 ./manage.py runserver
 ```
 
+----
+
+https://asciinema.org/a/5hliyk9hnuvvlyfi0pj34mzin
 
 ## Celerizar
 
@@ -90,11 +102,10 @@ cd pythonvigo
 
 redis
 
-
 ## Install celery
 
 ```shell
-pip install 'celery[redis]'
+$ pip install 'celery[redis]'
 ```
 
 ## Django
@@ -126,15 +137,21 @@ app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 Modificar `contact/tasks.py`:
 
-```diff
-+from pythonvigo.celery import app
-+
-+@app.task
+```python
+...
+from pythonvigo.celery import app
+
+@app.task
+def send_mail(recipient, subject, message):
+    ...
 ```
 
-```diff
--        send_mail(recipient, subject, message)
-+        send_mail.delay(recipient, subject, message)
+```python
+        send_mail(recipient, subject, message)
+```
+
+```python
+        send_mail.delay(recipient, subject, message)
 ```
 
 ## Lanzar worker
@@ -143,4 +160,4 @@ Modificar `contact/tasks.py`:
 DJANGO_SETTINGS_MODULE=pythonvigo.settings celery -A pythonvigo worker
 ```
 
-## Demo
+## ¿Demo?
