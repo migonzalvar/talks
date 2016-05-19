@@ -13,21 +13,20 @@
 
 ![](img/teleprinter.jpg)
 
-
-# Python desde la línea de comandos
-
 ---
 
 ![](img/miguel-gonzalez.jpg)
 
 - [@migonzalvar](https://twitter.com/migonzalvar)
-- Coorganizador Python Vigo
-- Miembro junta directiva de Python España
-- Trabajo en Initios Desarrollos(http://initios.com)
+- Python Vigo
+- Python España
+- Initios Desarrollos(http://initios.com)
 
 ---
 
 https://bitbucket.org/migonzalvar/talks/src/master/2016-05-python-vigo/
+
+# Python desde la línea de comandos
 
 # Disclaimer
 
