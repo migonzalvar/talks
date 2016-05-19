@@ -138,6 +138,8 @@ $ ./arguments `echo 1`
 
 # Códigos de salida
 
+---
+
 Si es `0` indica éxito.
 
 ```
@@ -146,7 +148,7 @@ $ echo $?
 0
 ```
 
-Si es otra cosa indica error.`
+Si es otra cosa indica error.
 
 ```
 $ python -c 'raise SystemExit(42)'
