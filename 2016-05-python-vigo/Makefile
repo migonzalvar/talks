@@ -3,7 +3,7 @@
 ALL: install compile open
 
 compile:
-	pandoc -t revealjs --template ./default.revealjs -s -V revealjs-url:reveal.js -V theme:beige index.md -o index.html
+	pandoc -t revealjs --template ./default.revealjs -s -V revealjs-url:reveal.js -V theme:solarized index.md -o index.html
 
 clean:
 	rm -f reveal.js.tar.gz
