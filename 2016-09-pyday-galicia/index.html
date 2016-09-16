@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section><section id="mi-primera-metaclase-un-ejemplo-práctico" class="titleslide slide level1"><h1>Mi primera metaclase: un ejemplo práctico</h1></section></section>
+<section><section id="pyday-galicia-2016" class="titleslide slide level1"><h1>PyDay Galicia 2016</h1></section><section id="metaprogramación" class="slide level2">
+<h1>Metaprogramación</h1>
+<blockquote>
+<p>Escribir programas que escriben o manipulan otros programas (o así mismos)</p>
+</blockquote>
+</section><section id="python-metaclases" class="slide level2">
+<h1>Python: metaclases</h1>
+<p>Controlan la creación de la clases.</p>
+</section><section id="objetivo" class="slide level2">
+<h1>Objetivo</h1>
+<p>Ejemplo paso a paso de creción de una metaclase para resolver un problema práctico.</p>
+</section></section>
+<section><section id="empezamos" class="titleslide slide level1"><h1>Empezamos</h1></section><section id="problema" class="slide level2">
+<h1>Problema</h1>
+<p>Una consulta a una API externa me devuelve un JSON feísimo.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">s <span class="op">=</span> <span class="st">&#39;&#39;&#39;{&quot;iniFecha&quot;: &quot;12/05/2010&quot;,</span>
+<span class="st">        &quot;imp&quot;: 12.24,</span>
+<span class="st">        &quot;nombre&quot;: &quot;Don Pimp</span><span class="ch">\xf3</span><span class="st">n&quot;}&#39;&#39;&#39;</span></code></pre></div>
+<ul>
+<li>Nombre <em>camelCase</em></li>
+<li>Fecha e suna cadena</li>
+<li>un float para cantidades</li>
+</ul>
+</section><section id="módulo-json" class="slide level2">
+<h1>Módulo <code>json</code></h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> json
+
+d <span class="op">=</span> json.loads(s)
+d</code></pre></div>
+<pre><code>{&#39;imp&#39;: 12.24, &#39;iniFecha&#39;: &#39;12/05/2010&#39;, &#39;nombre&#39;: &#39;Don Pimpón&#39;}</code></pre>
+</section><section id="deseo" class="slide level2">
+<h1>Deseo</h1>
+<p>Tener un objeto Python</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">Model(amount<span class="op">=</span>Decimal(<span class="st">&#39;12.24&#39;</span>), start_date<span class="op">=</span>datetime.date(<span class="dv">2010</span>, <span class="dv">5</span>, <span class="dv">12</span>), name<span class="op">=</span><span class="st">&#39;Don Pimpón&#39;</span>)</code></pre></div>
+</section><section id="definir-modelo" class="slide level2">
+<h1>1) Definir modelo</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Model:
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, amount<span class="op">=</span><span class="va">None</span>, start_date<span class="op">=</span><span class="va">None</span>, name<span class="op">=</span><span class="va">None</span>):
+        <span class="va">self</span>.amount <span class="op">=</span> amount
+        <span class="va">self</span>.start_date <span class="op">=</span> start_date
+        <span class="va">self</span>.name <span class="op">=</span> name
+        
+    <span class="kw">def</span> <span class="fu">__repr__</span>(<span class="va">self</span>):
+        <span class="cf">return</span> (<span class="st">&#39;Model(&#39;</span>
+                <span class="co">&#39;amount={s.amount!r}, &#39;</span>
+                <span class="co">&#39;start_date={s.start_date!r}, &#39;</span>
+                <span class="co">&#39;name={s.name!r})&#39;</span>).<span class="bu">format</span>(s<span class="op">=</span><span class="va">self</span>)</code></pre></div>
+</section><section id="deserializador" class="slide level2">
+<h1>2) Deserializador</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> from_json(s):
+    d <span class="op">=</span> json.loads(s)
+    obj <span class="op">=</span> Model()
+    obj.amount <span class="op">=</span> d[<span class="st">&#39;imp&#39;</span>]
+    obj.start_date <span class="op">=</span> d[<span class="st">&#39;iniFecha&#39;</span>]
+    obj.name <span class="op">=</span> d[<span class="st">&#39;nombre&#39;</span>]
+    <span class="cf">return</span> obj
+
+obj <span class="op">=</span> from_json(s)
+obj</code></pre></div>
+<pre><code>Model(amount=12.24, start_date=&#39;12/05/2010&#39;, name=&#39;Don Pimpón&#39;)</code></pre>
+</section><section id="serializador" class="slide level2">
+<h1>3) Serializador</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> to_json(obj):
+    d <span class="op">=</span> {}
+    d[<span class="st">&#39;imp&#39;</span>] <span class="op">=</span> obj.amount
+    d[<span class="st">&#39;iniFecha&#39;</span>] <span class="op">=</span> obj.start_date
+    d[<span class="st">&#39;nombre&#39;</span>] <span class="op">=</span> obj.name
+    <span class="cf">return</span> json.dumps(d, indent<span class="op">=</span><span class="dv">2</span>)
+
+d2 <span class="op">=</span> to_json(obj)
+<span class="bu">print</span>(d2)</code></pre></div>
+<pre><code>{
+  &quot;nombre&quot;: &quot;Don Pimp\u00f3n&quot;,
+  &quot;imp&quot;: 12.24,
+  &quot;iniFecha&quot;: &quot;12/05/2010&quot;
+}</code></pre>
+</section><section id="con-tipos-nativos" class="slide level2">
+<h1>Con tipos nativos!</h1>
+</section><section id="deserializar" class="slide level2">
+<h1>Deserializar</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> decimal <span class="im">import</span> Decimal <span class="im">as</span> D
+<span class="im">import</span> datetime <span class="im">as</span> dt
+
+<span class="kw">def</span> from_json(s):
+    d <span class="op">=</span> json.loads(s)
+    obj <span class="op">=</span> Model()
+    obj.amount <span class="op">=</span> D(<span class="bu">str</span>(d[<span class="st">&#39;imp&#39;</span>]))
+    obj.start_date <span class="op">=</span> dt.datetime.strptime(d[<span class="st">&#39;iniFecha&#39;</span>], <span class="st">&#39;</span><span class="sc">%d</span><span class="st">/%m/%Y&#39;</span>).date()
+    obj.name <span class="op">=</span> d[<span class="st">&#39;nombre&#39;</span>]
+    <span class="cf">return</span> obj
+
+obj <span class="op">=</span> from_json(s)
+obj</code></pre></div>
+<pre><code>Model(amount=Decimal(&#39;12.24&#39;), start_date=datetime.date(2010, 5, 12), name=&#39;Don Pimpón&#39;)</code></pre>
+</section><section id="serializar" class="slide level2">
+<h1>Serializar</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> to_json(obj):
+    d <span class="op">=</span> {}
+    d[<span class="st">&#39;imp&#39;</span>] <span class="op">=</span> <span class="bu">str</span>(obj.amount)
+    d[<span class="st">&#39;iniFecha&#39;</span>] <span class="op">=</span> obj.start_date.strftime(<span class="st">&#39;</span><span class="sc">%d</span><span class="st">/%m/%Y&#39;</span>)
+    d[<span class="st">&#39;nombre&#39;</span>] <span class="op">=</span> obj.name
+    <span class="cf">return</span> json.dumps(d, indent<span class="op">=</span><span class="dv">2</span>)
+
+d <span class="op">=</span> to_json(obj)
+<span class="bu">print</span>(d)</code></pre></div>
+<pre><code>{
+  &quot;nombre&quot;: &quot;Don Pimp\u00f3n&quot;,
+  &quot;imp&quot;: &quot;12.24&quot;,
+  &quot;iniFecha&quot;: &quot;12/05/2010&quot;
+}</code></pre>
+</section><section id="hasta-aqui" class="slide level2">
+<h1>Hasta aqui</h1>
+<p>Ventajas: más pythonico</p>
+<ul>
+<li>tipos nativos (decimal, fecha)</li>
+<li>atributos en vez de claves</li>
+</ul>
+<p>Desventajas: ¡MUCHO CÓDIGO!</p>
+<ul>
+<li>Cada modelo código repetitivo</li>
+<li>Desperdigado</li>
+</ul>
+</section></section>
+<section><section id="metaclases-al-rescate" class="titleslide slide level1"><h1>Metaclases al rescate</h1></section><section id="qué-quiero-obtener" class="slide level2">
+<h1>¿Qué quiero obtener?</h1>
+<pre><code>class Model:
+    start_date = DateField(&#39;iniFecha&#39;)
+    amount = DecimalField(&#39;imp&#39;)
+    name = Field(&#39;nombre&#39;)
+    
+obj = Model.from_json(s)</code></pre>
+</section><section id="clases-por-campo" class="slide level2">
+<h1>Clases por campo</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Field:
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, key):
+        <span class="va">self</span>.key <span class="op">=</span> key
+
+    <span class="kw">def</span> from_json(<span class="va">self</span>, value):
+        <span class="cf">return</span> value
+
+    <span class="kw">def</span> to_json(<span class="va">self</span>, value):
+        <span class="cf">return</span> value</code></pre></div>
+</section><section id="decimal" class="slide level2">
+<h1>Decimal</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> DecimalField(Field):
+    <span class="kw">def</span> from_json(<span class="va">self</span>, value):
+        <span class="cf">return</span> D(<span class="bu">str</span>(value))
+
+    <span class="kw">def</span> to_json(<span class="va">self</span>, value):
+        <span class="cf">return</span> <span class="bu">float</span>(value)</code></pre></div>
+</section><section id="fecha" class="slide level2">
+<h1>Fecha</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> DateField(Field):
+    <span class="kw">def</span> from_json(<span class="va">self</span>, value):
+        <span class="cf">return</span> dt.datetime.<span class="op">\</span>
+            strptime(value, <span class="st">&#39;</span><span class="sc">%d</span><span class="st">/%m/%Y&#39;</span>).date()
+
+    <span class="kw">def</span> to_json(<span class="va">self</span>, value):
+        <span class="cf">return</span> value.strftime(<span class="st">&#39;</span><span class="sc">%d</span><span class="st">/%m/%Y&#39;</span>)</code></pre></div>
+</section><section id="clases" class="slide level2">
+<h1>Clases</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Meta(<span class="bu">type</span>):
+    ...
+
+<span class="kw">class</span> Base(metaclass<span class="op">=</span>Meta):
+    ...
+
+<span class="kw">class</span> Model(Base):
+    ...</code></pre></div>
+</section><section id="meta" class="slide level2">
+<h1>Meta</h1>
+<p>Es el que intercepta la creación de la clase <code>Base</code>.</p>
+<p>La clave es el método <code>__new__</code>.</p>
+<p>En tiempo de ejecución rellenamos <code>cls.fields</code></p>
+</section><section class="slide level2">
+
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> <span class="fu">__new__</span>(mcs, clsname, bases, clsdict):
+    fields <span class="op">=</span> collections.OrderedDict()
+    <span class="cf">for</span> name, value <span class="op">in</span> clsdict.items():
+        <span class="cf">if</span> <span class="bu">isinstance</span>(value, Field):
+            fields[name] <span class="op">=</span> value
+    clsdict[<span class="st">&#39;fields&#39;</span>] <span class="op">=</span> fields
+    <span class="cf">return</span> <span class="bu">type</span>.<span class="fu">__new__</span>(mcs, clsname, bases, newdict)</code></pre></div>
+</section><section class="slide level2">
+
+<pre><code>fields = {&#39;amount&#39;: &lt;__main__.DecimalField at 0x&gt;,
+ &#39;name&#39;: &lt;__main__.Field at 0x&gt;,
+ &#39;start_date&#39;: &lt;__main__.DateField at 0x&gt;}</code></pre>
+</section><section id="base" class="slide level2">
+<h1>Base</h1>
+<p>Implmenta <code>from_json</code> (método de clase) y <code>to_json</code> (instancia) y <code>__str__</code>.</p>
+</section><section class="slide level2">
+
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Base(metaclass<span class="op">=</span>Meta):
+    <span class="at">@classmethod</span>
+    <span class="kw">def</span> from_json(cls, s):
+        d <span class="op">=</span> json.loads(s)
+        obj <span class="op">=</span> cls()
+        <span class="cf">for</span> field_name, field <span class="op">in</span> cls.fields.items():
+            value <span class="op">=</span> field.from_json(d[field.key])
+            <span class="bu">setattr</span>(obj, field_name, value)
+        <span class="cf">return</span> obj</code></pre></div>
+</section><section class="slide level2">
+
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="kw">def</span> to_json(<span class="va">self</span>):
+        d <span class="op">=</span> collections.OrderedDict()
+        <span class="cf">for</span> field_name, field <span class="op">in</span> <span class="va">self</span>.fields.items():
+            value <span class="op">=</span> field.to_json(<span class="bu">getattr</span>(<span class="va">self</span>, field_name))
+            d[field.key] <span class="op">=</span> value
+        <span class="cf">return</span> json.dumps(d)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">obj <span class="op">=</span> Model.from_json(s)
+<span class="cf">assert</span> json.loads(obj.to_json()) <span class="op">==</span> json.loads(s)</code></pre></div>
+</section><section class="slide level2">
+
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">obj <span class="op">=</span> Model.from_json(s)
+<span class="cf">assert</span> obj.name <span class="op">==</span> <span class="st">&#39;Don Pimpón&#39;</span>
+<span class="cf">assert</span> obj.start_date <span class="op">==</span> dt.date(<span class="dv">2010</span>, <span class="dv">5</span>, <span class="dv">12</span>)
+<span class="cf">assert</span> obj.amount <span class="op">==</span> D(<span class="st">&#39;12.24&#39;</span>)</code></pre></div>
+</section><section class="slide level2">
+
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">obj <span class="op">=</span> Model.from_json(s)
+<span class="cf">assert</span> <span class="bu">repr</span>(obj) <span class="op">==</span> (
+    <span class="st">&quot;Model(amount=Decimal(&#39;12.24&#39;), &quot;</span>
+    <span class="co">&quot;start_date=datetime.date(2010, 5, 12), &quot;</span>
+    <span class="co">&quot;name=&#39;Don Pimpón&#39;)&quot;</span>
+)</code></pre></div>
+</section><section id="siguientes-pasos" class="slide level2">
+<h1>Siguientes pasos</h1>
+<ul>
+<li>Campos anidados</li>
+<li>Cambiar firma de <code>__init__</code></li>
+</ul>
+</section><section id="conclusiones" class="slide level2">
+<h1>Conclusiones</h1>
+<p>Fun!</p>
+</section></section>
+<section><section id="fin" class="titleslide slide level1"><h1>FIN</h1></section><section id="notas" class="slide level2">
+<h1>Notas</h1>
+<ul>
+<li><p>Los ORM, formularios... utilizan esta técnica.</p></li>
+<li><p>No es necesario hacerlo uno mismos: hay librerías que hacen esto. Ver marshmallow o Django REST framework.</p></li>
+</ul>
+</section><section id="más-info" class="slide level2">
+<h1>Más info</h1>
+<ul>
+<li>http://chimera.labs.oreilly.com/books/1230000000393</li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
