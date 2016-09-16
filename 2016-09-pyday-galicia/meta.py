@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import collections
 import datetime
 from decimal import Decimal
 from inspect import Signature, Parameter
@@ -35,7 +36,7 @@ class DecimalField(Field):
 
 class ModelMeta(type):
     def __new__(mcs, clsname, bases, clsdict):
-        fields = {}
+        fields = collections.OrderedDict()
         newdict = {}
         params = []
         for name, value in clsdict.items():
@@ -51,8 +52,15 @@ class ModelMeta(type):
 
         return type.__new__(mcs, clsname, bases, newdict)
 
+    @classmethod
+    def __prepare__(metacls, name, bases):
+        return collections.OrderedDict()
+
 
 class Base(metaclass=ModelMeta):
+    __signature__ = None
+    fields = None
+
     @classmethod
     def from_json(cls, s):
         d = json.loads(s)
@@ -84,10 +92,9 @@ class Base(metaclass=ModelMeta):
 
 
 class Model(Base):
-    start_date = DateField('iniFecha')
     amount = DecimalField('imp')
+    start_date = DateField('iniFecha')
     name = Field('nombre')
-
 
 
 def test_model():
@@ -97,7 +104,7 @@ def test_model():
 
     assert json.loads(obj.to_json()) == json.loads(s)
 
-    assert obj.name == 'Don Pimpón'
-    assert obj.start_date == datetime.date(2010, 5, 12)
     assert obj.amount == Decimal('12.24')
+    assert obj.start_date == datetime.date(2010, 5, 12)
+    assert obj.name == 'Don Pimpón'
     assert repr(obj) == "Model(amount=Decimal('12.24'), start_date=datetime.date(2010, 5, 12), name='Don Pimpón')"
