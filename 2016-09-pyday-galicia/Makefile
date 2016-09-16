@@ -6,7 +6,7 @@ notebook:
 	/home/migonzalvar/.local/opt/miniconda3/bin/jupyter-nbconvert Mi\ primera\ metaclase,\ un\ ejemplo\ práctico.ipynb --to markdown --output index.md
 
 compile: notebook
-	pandoc -t revealjs --template ./default.revealjs -s -V revealjs-url:reveal.js -V theme:sky index.md -o index.html
+	pandoc -t revealjs --template ./default.revealjs -s -V revealjs-url:reveal.js -V theme:white index.md -o index.html
 
 clean:
 	rm -f reveal.js.tar.gz
