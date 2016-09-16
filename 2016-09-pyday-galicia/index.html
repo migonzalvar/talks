@@ -65,7 +65,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <section><section id="mi-primera-metaclase-un-ejemplo-práctico" class="titleslide slide level1"><h1>Mi primera metaclase: un ejemplo práctico</h1></section></section>
-<section><section id="pyday-galicia-2016" class="titleslide slide level1"><h1>PyDay Galicia 2016</h1></section><section id="metaprogramación" class="slide level2">
+<section><section id="pyday-galicia-2016" class="titleslide slide level1"><h1>PyDay Galicia 2016</h1></section><section class="slide level2">
+
+<figure>
+<img src="img/drink.jpg" />
+</figure>
+</section><section id="metaprogramación" class="slide level2">
 <h1>Metaprogramación</h1>
 <blockquote>
 <p>Escribir programas que escriben o manipulan otros programas (o así mismos)</p>
@@ -77,7 +82,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1>Objetivo</h1>
 <p>Ejemplo paso a paso de creción de una metaclase para resolver un problema práctico.</p>
 </section></section>
-<section><section id="empezamos" class="titleslide slide level1"><h1>Empezamos</h1></section><section id="problema" class="slide level2">
+<section><section id="empezamos" class="titleslide slide level1"><h1>Empezamos</h1></section><section class="slide level2">
+
+<figure>
+<img src="img/alice.jpg" />
+</figure>
+</section><section id="problema" class="slide level2">
 <h1>Problema</h1>
 <p>Una consulta a una API externa me devuelve un JSON feísimo.</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">s <span class="op">=</span> <span class="st">&#39;&#39;&#39;{&quot;iniFecha&quot;: &quot;12/05/2010&quot;,</span>
@@ -188,7 +198,12 @@ d <span class="op">=</span> to_json(obj)
 <li>Desperdigado</li>
 </ul>
 </section></section>
-<section><section id="metaclases-al-rescate" class="titleslide slide level1"><h1>Metaclases al rescate</h1></section><section id="qué-quiero-obtener" class="slide level2">
+<section><section id="metaclases-al-rescate" class="titleslide slide level1"><h1>Metaclases al rescate</h1></section><section class="slide level2">
+
+<figure>
+<img src="img/chesire.jpg" />
+</figure>
+</section><section id="qué-quiero-obtener" class="slide level2">
 <h1>¿Qué quiero obtener?</h1>
 <pre><code>class Model:
     start_date = DateField(&#39;iniFecha&#39;)
@@ -291,15 +306,25 @@ obj = Model.from_json(s)</code></pre>
     <span class="co">&quot;start_date=datetime.date(2010, 5, 12), &quot;</span>
     <span class="co">&quot;name=&#39;Don Pimpón&#39;)&quot;</span>
 )</code></pre></div>
+</section></section>
+<section><section id="conclusiones" class="titleslide slide level1"><h1>Conclusiones</h1></section><section class="slide level2">
+
+<figure>
+<img src="img/madhatter.jpg" />
+</figure>
 </section><section id="siguientes-pasos" class="slide level2">
 <h1>Siguientes pasos</h1>
 <ul>
 <li>Campos anidados</li>
 <li>Cambiar firma de <code>__init__</code></li>
 </ul>
-</section><section id="conclusiones" class="slide level2">
-<h1>Conclusiones</h1>
-<p>Fun!</p>
+</section><section id="por-qué" class="slide level2">
+<h1>¿Por qué?</h1>
+<ul>
+<li>Fun!</li>
+<li>Declarativo en vez de imperativo</li>
+<li>Reduce código repetitivo</li>
+</ul>
 </section></section>
 <section><section id="fin" class="titleslide slide level1"><h1>FIN</h1></section><section id="notas" class="slide level2">
 <h1>Notas</h1>

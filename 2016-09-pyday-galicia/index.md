@@ -3,6 +3,11 @@
 
 # PyDay Galicia 2016
 
+---
+
+![](img/drink.jpg)
+
+
 ## Metaprogramación
 
 
@@ -17,6 +22,10 @@ Controlan la creación de la clases.
 Ejemplo paso a paso de creción de una metaclase para resolver un problema práctico.
 
 # Empezamos
+
+---
+
+![](img/alice.jpg)
 
 ## Problema
 
@@ -187,6 +196,10 @@ Desventajas: ¡MUCHO CÓDIGO!
 
 
 # Metaclases al rescate
+
+---
+
+![](img/chesire.jpg)
 
 ## ¿Qué quiero obtener?
 
@@ -433,15 +446,22 @@ assert repr(obj) == (
 )
 ```
 
+# Conclusiones
+
+---
+
+![](img/madhatter.jpg)
+
 ## Siguientes pasos
 
 - Campos anidados
 - Cambiar firma de `__init__`
 
+## ¿Por qué?
 
-## Conclusiones
-
-Fun!
+- Fun!
+- Declarativo en vez de imperativo
+- Reduce código repetitivo
 
 # FIN
 
