@@ -81,12 +81,13 @@ Unicode
 
 ## 2016
 
-[Unicode 9.0](emoji-examples.png)
+![Unicode 9.0](emoji-examples.png)
 
 -----
 
 - Atención a la diversidad: fototipos
 
+![](unicode_diversity.png)
 
 # Codificación de Unicode
 
