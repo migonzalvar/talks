@@ -79,18 +79,32 @@ Unicode
 
 ## 2016
 
-Emoji!
+[Unicode 9.0](emoji-examples.png)
+
+-----
+
+- Atención a la diversidad: fototipos
+
 
 # Codificación de Unicode
 
 ## UCS-2 o UTF-16
 
+// TODO Imagen UCS-2
+
+-----
+
 - Muchos ceros
-- BOM?
+- Little o big endian: BOM?
 
 ## UTF-8
 
-- Compatible hacia atrás
+// TODO Imagen UTF-8
+
+-----
+
+- Compatible hacia atrás con ASCII
+- Más eficiente
 
 # Cómo
 
