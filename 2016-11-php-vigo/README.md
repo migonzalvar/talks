@@ -48,7 +48,6 @@ Empezamos...
 
 - El primer *wire protocol*
 - Por la línea van bits . \_
--
 
 ## 1963
 
@@ -66,10 +65,13 @@ Empezamos...
 -----
 
 - Explosión con el OEM: Western, Greek, Russian
+- Incluye acentos, caracteres, líneas...
 
 ## 1991
 
 Unicode
+
+// TODO Imagen para Unicode
 
 -----
 
@@ -112,29 +114,39 @@ Unicode
 
 - Email
 
-    Content-Type: text/plain; charset="UTF-8"
+```
+Content-Type: text/plain; charset="UTF-8"
+```
 
 - HTML 5
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
+```
 
 - HTML arcaico
 
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+```
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+```
 
 - XML
 
-    <?xml version="1.0" encoding="UTF-8" ?>
+```
+<?xml version="1.0" encoding="UTF-8" ?>
+```
 
 - Apache server (configuración o .htaccess) sirve para que las cabeceras HTTP text/html y text/plain:
 
-    AddDefaultCharset UTF-8
+```
+AddDefaultCharset UTF-8
+```
 
 - MySQL
 
-    CREATE DATABASE mydb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-
+```
+CREATE DATABASE mydb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
 
 
 # Material extra
