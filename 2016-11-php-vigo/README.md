@@ -65,13 +65,27 @@ Porque, ¿a quién no le ha pasado alguna vez?
 - Discusión política
 - Codificación... después
 
-## Codepoints
+## Ejemplos de code points
 
-U+0041	A	LATIN CAPITAL LETTER A
+```
+A
+LATIN CAPITAL LETTER A (U+0041)
 
-U+2620	☠	SKULL AND CROSSBONES
+☠
+SKULL AND CROSSBONES (U+2620)
 
-U+1F600	😀	GRINNING FACE
+😀
+GRINNING FACE (U+1F600)
+```
+-----
+
+![](code-points.png)
+
+## Ellipsis
+
+… **'HORIZONTAL ELLIPSIS' (U+2026)**
+
+![HORIZONTAL ELLIPSIS (U+2026)](horizontal-ellipsis.png)
 
 ## 2015
 
