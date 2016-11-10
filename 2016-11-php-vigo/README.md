@@ -1,14 +1,14 @@
-% Codificación de texto
-% Miguel González
-% 9/11/2016
-
 # ¿DÃ³nde estÃ¡ mi Ã±?
 
-## ℙℋℙ ⅤЇḠϴ
+## PHP VIGO
 
-Esta noche vamos a tratar de desentrañar uno de los misterios más
+![PHP VIGO](php-vigo.png)
+
+![Twitter](twitter.png)
+
+<!--Esta noche vamos a tratar de desentrañar uno de los misterios más
 insondables de las ciencias de computación y es el misterio de la
-codificación de caracteres.
+codificación de caracteres. ℙℋℙ ⅤЇḠϴ -->
 
 Porque, ¿a quién no le ha pasado alguna vez?
 
@@ -39,9 +39,12 @@ Porque, ¿a quién no le ha pasado alguna vez?
 
 - 7 bits
 - 0 a 31: no imprimible
-    - 7 BEL
-    - 12 LF
 - Optimizado mayúsculas/minúsculas
+
+## Quiz
+
+- 10 LF ¿?
+- 7 BEL ¿?
 
 ## 1981
 
@@ -54,6 +57,10 @@ Porque, ¿a quién no le ha pasado alguna vez?
 - Explosión con el OEM: Western, Greek, Russian
 - Incluye acentos, caracteres, líneas...
 
+## CP-1252
+
+![CP-1252](CP-1252.png)
+
 ## 1991
 
 ![Unicode](unicode25cake-utc147-design.jpg)
@@ -63,7 +70,7 @@ Porque, ¿a quién no le ha pasado alguna vez?
 - Code points no letras
 - 1.114.112 code points de 0 a 10FFFF
 - Discusión política
-- Codificación... después
+- Codificación... lo vemos después
 
 ## Ejemplos de code points
 
@@ -139,7 +146,8 @@ Content-Type: text/plain; charset="UTF-8"
 ### HTML arcaico
 
 ```
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="Content-Type"
+      content="text/html;charset=UTF-8">
 ```
 
 ## Configuración
@@ -153,7 +161,9 @@ AddDefaultCharset UTF-8
 ### MySQL
 
 ```
-CREATE DATABASE mydb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE mydb
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
 ```
 
 
@@ -161,31 +171,48 @@ CREATE DATABASE mydb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 ## ¿DÃ³nde estÃ¡ mi Ã±?
 
+```
 Ã±
+```
+
+-----
 
 ![ISO-8859-1](latin1.gif)
 
-C3 B1
+-----
 
-11000011 10110001
+```
+       C3        B1
+
+1100 0011 1011 0001
+```
+
+-----
 
 ![UTF-8](utf-8.png)
 
+-----
+
+```
 ___00011 __110001
 
-000 1111 0001
+1111 0001
 
-U+0F1
+U+F1
 
 'LATIN SMALL LETTER N WITH TILDE'
 
+```
+
 ## ï»¿
 
-ï»¿
+```
+ ï  »  ¿
 
 EF BB BF
+```
 
-Byte Order Mark de UTF-8
+Es el `Byte Order Mark` de UTF-8
 
 # Gracias
 
