@@ -12,25 +12,26 @@
 
 ![ifs](./everywhere.jpg){width=70%}
 
-## Por que ...
+## Porque...
 
-Python no tiene `switch`
+¡Python no tiene `switch`!
 
 ## Clásico
 
 ```python
-if edad <= 12:
-    return 'Minibasket'
-elif 12 < x <= 14:
-    return 'Infantil'
-elif 14 < x <= 16:
-    return 'Cadete'
-elif 16 < x <= 18:
-    return 'Junior'
-elif 18 < x:
-    return 'Absoluta'
-else:
-    return 'N/A'
+def fn(edad):
+    if edad <= 12:
+        return 'Minibasket'
+    elif 12 < x <= 14:
+        return 'Infantil'
+    elif 14 < x <= 16:
+        return 'Cadete'
+    elif 16 < x <= 18:
+        return 'Junior'
+    elif 18 < x:
+        return 'Absoluta'
+    else:
+        return 'N/A'
 ```
 
 ## Tabla
@@ -45,19 +46,21 @@ TABLA = (
     (lambda x: True, 'N/A'),
 )
 
-for check, categoria in TABLA:
-    if check(x):
-        return x
+def fn(edad):
+    for check, categoria in TABLA:
+        if check(edad):
+            return edad
 ```
 
-## Tabla... really?
+## Tabla... ¿de verdad?
 
-- Y si los 
+- Lambdas?
+- Un poco cutre Python, ¡puedes hacerlo mejor!
+
 ## Decoradores
 
 ```python
 TABLA2 = []
-
 
 def register(resultado):
     global TABLA2
@@ -89,6 +92,10 @@ def _(edad):
 @register('Absoluta')
 def _(edad):
     return 18 < edad
+
+@register('N/A')
+def _(edad):
+    return True
 ```
 
 ----
@@ -98,5 +105,6 @@ def fn3(edad):
     for check, categoria in TABLA2:
         if check(edad):
             return categoria    
-    return True
 ```
+
+**fn2 y fn3 son iguales**

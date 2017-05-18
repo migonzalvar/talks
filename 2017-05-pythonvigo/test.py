@@ -18,16 +18,16 @@ def fn1(edad):
 
 # Tabla
 
-def fn2(edad):
-    TABLA = (
-        (lambda x: x <= 12, 'Minibasket'),
-        (lambda x: 12 < x <= 14, 'Infantil'),
-        (lambda x: 14 < x <= 16, 'Cadete'),
-        (lambda x: 16 < x <= 18, 'Junior'),
-        (lambda x: 18 < x, 'Absoluta'),
-        (lambda x: True, 'N/A'),
-    )
+TABLA = (
+    (lambda x: x <= 12, 'Minibasket'),
+    (lambda x: 12 < x <= 14, 'Infantil'),
+    (lambda x: 14 < x <= 16, 'Cadete'),
+    (lambda x: 16 < x <= 18, 'Junior'),
+    (lambda x: 18 < x, 'Absoluta'),
+    (lambda x: True, 'N/A'),
+)
 
+def fn2(edad):
     for check, categoria in TABLA:
         if check(edad):
             return categoria
@@ -70,11 +70,15 @@ def _(edad):
     return 18 < edad
 
 
+@register('N/A')
+def _(edad):
+    return True
+
+
 def fn3(edad):
     for check, categoria in TABLA2:
         if check(edad):
             return categoria    
-    return True
 
 # Test
 
