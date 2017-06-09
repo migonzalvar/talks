@@ -96,15 +96,11 @@ SKULL AND CROSSBONES (U+2620)
 GRINNING FACE (U+1F600)
 ```
 
------
+## …
 
-![](code-points.png){height=500px}
+**'HORIZONTAL ELLIPSIS' (U+2026)**
 
-## Ellipsis
-
-… **'HORIZONTAL ELLIPSIS' (U+2026)**
-
-![](horizontal-ellipsis.png){height=500px}
+![](horizontal-ellipsis.png){height=360px}
 
 ## 2015
 
