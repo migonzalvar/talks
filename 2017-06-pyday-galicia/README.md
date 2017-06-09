@@ -4,7 +4,7 @@
 
 ![PyDay](pyday.svg)
 
-# Miguel Gonz?lez
+# Miguel Gonz�lez
 
 # ï»¿
 
@@ -12,7 +12,7 @@
 
 ## 1836
 
-![Tabla código morse](International_Morse_code.png)
+![](International_Morse_code.png){height=500px}
 
 ## Morse
 
@@ -25,7 +25,7 @@
 
 ## 1874
 
-![Baudot 1888 US patent](Baudot_Code_-_from_1888_patent.png)
+![](Baudot_Code_-_from_1888_patent.png){height=500px}
 
 ## Baudot
 
@@ -35,7 +35,7 @@
 
 ## 1900
 
-![Cinta perforada](5-holes-tape.png)
+![](5-holes-tape.png){height=500px}
 
 ## Cinta perforada
 
@@ -44,7 +44,7 @@
 
 ## 1963
 
-![ASCII](US-ASCII_code_chart.png)
+![](US-ASCII_code_chart.png){height=500px}
 
 ## ASCII
 
@@ -59,7 +59,7 @@
 
 ## 1981
 
-![ASCII extendido](Codepage-437.png)
+![](Codepage-437.png){height=500px}
 
 ## Códigos de página
 
@@ -70,11 +70,11 @@
 
 ## CP-1252
 
-![CP-1252](CP-1252.png)
+![](CP-1252.png){height=500px}
 
 ## 1991
 
-![Unicode](unicode25cake-utc147-design.jpg)
+![](unicode25cake-utc147-design.jpg){height=500px}
 
 ## Unicode
 
@@ -98,17 +98,17 @@ GRINNING FACE (U+1F600)
 
 -----
 
-![](code-points.png)
+![](code-points.png){height=500px}
 
 ## Ellipsis
 
 … **'HORIZONTAL ELLIPSIS' (U+2026)**
 
-![HORIZONTAL ELLIPSIS (U+2026)](horizontal-ellipsis.png)
+![](horizontal-ellipsis.png){height=500px}
 
 ## 2015
 
-![Unicode 8.0](emoji-examples.png)
+![](emoji-examples.png){height=500px}
 
 ## Unicode 8
 
@@ -116,7 +116,7 @@ GRINNING FACE (U+1F600)
 
 ## Fototipos (escala Fitzpatrick)
 
-![Mofidifcadores de emoji](unicode_diversity.png)
+![](unicode_diversity.png)
 
 # Codificación Unicode
 
@@ -129,7 +129,7 @@ GRINNING FACE (U+1F600)
 
 ## Planos surrogados
 
-![UTF-16](utf-16.png)
+![](utf-16.png)
 
 ## Problemas UTF-16
 
@@ -139,44 +139,91 @@ GRINNING FACE (U+1F600)
 
 ## UTF-8
 
-![UTF-8](utf-8.png)
+![](utf-8.png)
 
 ## Ventajas UTF-8
 
 - Compatible hacia atrás con ASCII
 - Muy eficiente para *code points* más usados: 1 para ASCII, 2 para BMP, 3 en resto
-- Decodificación:
-    - Distinción multi byte y single byte
-    - Auto sincronizable
+- Auto sincronizable: `0xxxxxxx` y `11xxxxxx` marcan comienzo caracter
 
 ## Ejemplo: a (U+0061)
 
-![a](letter-a.png)
+![](letter-a.png)
 
 ## Ejemplo: Ñ (U+00D1)
 
-![Ñ](N-with-tilde.png)
+![](N-with-tilde.png)
 
 ## Ejemplo: 🐍 (U+1F40D)
 
-![snake](snake.png)
-
+![](snake.png)
 
 ## En resumen...
 
+- Unicode
+- UTF-8
+
 ----
 
-![All the things](all-the-things.jpg)
-
+![](all-the-things.jpg)
 
 # Python
 
 ## Python 2
 
+```
+Python 2.7.13 (default, May 10 2017, 20:04:28)
+>>> s = 'ñ'
+>>> len(s)
+2
+>>> s = u'ñ'
+>>> len(s)
+1
+```
 
+----
+
+```
+Python 2.7.13 (default, May 10 2017, 20:04:28)
+>>> s = 'Ñ'
+>>> s
+'\xc3\x91'
+>>> s = u'Ñ'
+>>> s
+u'\xd1'
+```
 
 ## Python 3
 
+- Dos tipos: `byte` y *texto* (`str`)
+
+![](encode-decode.png)
+
+----
+
+```python
+>>> s = 'Ñ'
+>>> s
+'Ñ'
+>>> s.encode('utf-8')
+b'\xc3\x91'
+```
+
+----
+
+```
+>>> b'Ñ'
+  File "<stdin>", line 1
+SyntaxError: bytes can only contain ASCII literal characters.
+```
+
+```
+>>> b'\xd1'
+b'\xd1'
+>>> b'\xd1'.decode('latin1')
+'Ñ'
+```
 
 # Mundo exterior
 
@@ -195,40 +242,6 @@ GRINNING FACE (U+1F600)
 {'encoding': 'EUC-JP', 'confidence': 0.99}
 ```
 
-## Email
-
-```
-Content-Type: text/plain; charset="UTF-8"
-```
-
-## HTML 5
-
-```
-<meta charset="UTF-8">
-```
-
-## HTML arcaico
-
-```
-<meta http-equiv="Content-Type"
-      content="text/html;charset=UTF-8">
-```
-
-## Apache server (configuración o .htaccess) sirve para que las cabeceras HTTP text/html y text/plain:
-
-```
-AddDefaultCharset UTF-8
-```
-
-## MySQL
-
-```
-CREATE DATABASE mydb
-CHARACTER SET utf8mb4
-COLLATE utf8mb4_unicode_ci;
-```
-
-
 # Solución
 
 ## LF
@@ -239,6 +252,13 @@ COLLATE utf8mb4_unicode_ci;
 
 - Código control de campana. Inventado por Western Union y recogido en ASCII.
 
+## Gonz�alez
+
+```python
+>>> 'á'.encode('latin1').decode('utf8', errors='replace')
+'�'
+```
+
 ## ¿DÃ³nde estÃ¡ mi Ã±?
 
 
@@ -248,7 +268,7 @@ COLLATE utf8mb4_unicode_ci;
 
 -----
 
-![ISO-8859-1](latin1.gif)
+![ISO-8859-1](latin1.gif){height=500px}
 
 -----
 
@@ -260,11 +280,11 @@ COLLATE utf8mb4_unicode_ci;
 1100 0011 1011 0001
 ```
 
------
+----
 
 ![UTF-8](utf-8.png)
 
------
+----
 
 ```
 ___00011 __110001
@@ -280,7 +300,16 @@ U+F1
 
 **LATIN SMALL LETTER N WITH TILDE**
 
-## ï»¿
+----
+
+```python
+>>> 'Ã±'.encode('latin1')
+b'\xc3\xb1'
+>>> 'Ã±'.encode('latin1').decode('utf8')
+'ñ'
+```
+
+## Y por último...
 
 ```
  ï  »  ¿
@@ -294,6 +323,20 @@ EF BB BF
 
 Es el `Byte Order Mark` de UTF-8.
 
+----
+
+```python
+>>> 'ï»¿'.encode('latin1')
+b'\xef\xbb\xbf'
+>>> 'ï»¿'.encode('latin1').decode('utf8')
+'\ufeff'
+```
+
+```python
+>>> import codecs
+>>> 'ï»¿'.encode('latin1') == codecs.BOM_UTF8
+```
+
 # Saber más
 
 ## Enlaces
@@ -305,6 +348,4 @@ Es el `Byte Order Mark` de UTF-8.
 
 ## ¡Gracias!
 
-- ![Organización](pyday.svg)
-- ![Empresa](logo-initios.png)
-- ![Más info](qr.png)
+![](gracias.png){height=500px}
