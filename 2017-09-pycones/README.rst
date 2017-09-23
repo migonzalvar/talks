@@ -153,7 +153,7 @@ Historia
 
 .. note::
 
-    En ROM de la tarjeta gráfica
+    En ROM de la tarjeta gráfica. Un *jumper* para cambiar. Impresoras. Naomi lo citó.
     Interfaces visuales: bordes!
 
 ----
@@ -265,13 +265,18 @@ Codificación
 
 ----
 
-Ejemplos prácticos
-==================
+Python práctico
+===============
 
 ----
 
 .. image:: images/encode-decode.png
     :width: 800px
+
+----
+
+ASCII
+-----
 
 ----
 
@@ -283,6 +288,18 @@ Ejemplos prácticos
     'B'
     >>> b'\x42'.decode('utf-8')
     'B'
+
+----
+
+Windows-1252
+------------
+
+----
+
+.. code:: pycon
+
+    >>> b'\xf1'.decode('Windows-1252')
+    'ñ'
 
 ----
 
@@ -299,13 +316,6 @@ Ejemplos prácticos
 
 .. code:: pycon
 
-    >>> b'\xf1'.decode('Windows-1252')
-    'ñ'
-
-----
-
-.. code:: pycon
-
     >>> b'\xf1'.decode('utf-8')
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
@@ -315,8 +325,10 @@ Ejemplos prácticos
 
 ----
 
-F1 --> 1111 0001
-----------------
+.. code::
+
+    F1 --> 1111 0001
+
 
 .. image:: images/utf-8.png
 
@@ -329,6 +341,11 @@ F1 --> 1111 0001
     ...   errors='replace'
     ... )
     '�'
+
+----
+
+UTF-8
+-----
 
 ----
 
@@ -346,6 +363,35 @@ F1 --> 1111 0001
 
 ----
 
+Emoji
+-----
+
+----
+
+.. image:: images/3-reyes.png
+    :width: 800px
+
+----
+
+.. code:: pycon
+
+    >>> import unicodedata
+    >>> s = "🤴🏻🤴🏽🤴🏿"
+    >>> for c in s: print(unicodedata.name(c))
+    ... 
+    PRINCE
+    EMOJI MODIFIER FITZPATRICK TYPE-1-2
+    PRINCE
+    EMOJI MODIFIER FITZPATRICK TYPE-4
+    PRINCE
+    EMOJI MODIFIER FITZPATRICK TYPE-6
+
+----
+
+.. image:: images/editor-unicode.png
+    :width: 800px
+
+----
 
 Conclusiones
 ============

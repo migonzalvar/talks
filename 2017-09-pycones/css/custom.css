@@ -42,9 +42,9 @@ h2 {
 }
 
 pre {
-    font-family: DejaVuSansMonoBook;
+    font-family: monospace;
     text-align: left;
-    font-size: 170%;
+    font-size: 120%;
     width: -moz-fit-content;
     width: -webkit-fit-content;
     margin: auto;
