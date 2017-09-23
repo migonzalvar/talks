@@ -3,6 +3,14 @@
 :css: css/custom.css
 :skip-help: true
 
+.. header::
+
+    .. image:: images/pycones.png
+
+.. footer::
+
+    @migonzalvar
+
 ----
 
 ¿DÃ³nde estÃ¡ mi Ã±?

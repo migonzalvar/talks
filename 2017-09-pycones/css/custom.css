@@ -49,3 +49,17 @@ pre {
     width: -webkit-fit-content;
     margin: auto;
 }
+
+.header img {
+    opacity: 0.2;
+    width: 192px;
+    position: absolute;
+    right: 0;
+    padding-right: 24px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    padding-left: 24px;
+}
