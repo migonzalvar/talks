@@ -66,6 +66,22 @@ removing 'chove-0.0.1' (and everything under it)
 
   Existe un entorno de test.
 
+----
+
+![](04-pypi/01 - Index.png)
+
+----
+
+![](04-pypi/02 - Log in.png)
+
+----
+
+![](04-pypi/03 - Your projects.png)
+
+----
+
+![](04-pypi/05 - Add API token.png)
+
 ## twine
 
 ---
