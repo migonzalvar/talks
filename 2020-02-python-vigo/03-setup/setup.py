@@ -6,7 +6,8 @@ setuptools.setup(
     author="Miguel González",
     author_email="migonzalvar@gmail.com",
     description="Check if it's rainning.",
-    long_description="It uses Meteogalicia",
+    long_description="It uses Meteogalicia.",
+    url="https://github.com/migonzalvar/chove",
     py_modules=["chove"],
     classifiers=[
         "Programming Language :: Python :: 3",
