@@ -8,7 +8,7 @@ date: Febrero 2020
 
 ## Ejemplo
 
-- [script rápido](01-script/main.py)
+- Partimos de un script [main.py](01-script/main.py)
 
 # Paquete básico
 
@@ -17,6 +17,8 @@ date: Febrero 2020
 - Disposición del código: eliminamos efectos secundarios en el `import`.
 
 - Renombrar para que sea importable (módulo).
+
+- Resultado módulo [chove.py](02-modulo/chove.py)
 
 ## Empaquetar
 
@@ -56,7 +58,7 @@ removing 'chove-0.0.1' (and everything under it)
 
 ---
 
-- Exploramos la carpeta `./dist/`
+- En la carpeta [./dist/](03-setup/dist/) está el paquete
 
 # Python Package Index
 
@@ -64,7 +66,7 @@ removing 'chove-0.0.1' (and everything under it)
 
 - Registrar cuenta en PyPI.
 
-  Existe un entorno de test.
+  Existe un entorno de [test](https://test.pypi.org/).
 
 ----
 
