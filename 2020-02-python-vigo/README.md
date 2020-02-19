@@ -1,6 +1,16 @@
-# Distribuir paquetes en Python
+---
+title: Distribuir paquetes con Python
+author: Miguel González
+date: Febrero 2020
+...
 
-## Ejemplo [script rápido](01-scripts/main.py)
+# Empezamos
+
+## Ejemplo
+
+- [script rápido](01-script/main.py)
+
+# Paquete básico
 
 ## Preparación para empaquetar
 
@@ -10,12 +20,14 @@
 
 ## Empaquetar
 
-Añadir:
+- Añadir:
 
-- [setup.py](03-setup/setup.py)
-- [README.rst](03-setup/README.rst)
+  - [setup.py](03-setup/setup.py)
+  - [README.rst](03-setup/README.rst)
 
-Creamos el paquete fuente.
+- Creamos el paquete fuente.
+
+---
 
 ```console
 $ python3 setup.py sdist
@@ -42,10 +54,21 @@ Creating tar archive
 removing 'chove-0.0.1' (and everything under it)
 ```
 
-También
+---
 
+- Exploramos la carpeta `./dist/`
+
+# Python Package Index
 
 ## Alta en PyPI
+
+- Registrar cuenta en PyPI.
+
+  Existe un entorno de test.
+
+## twine
+
+---
 
 ```console
 $ twine upload --repository-url https://test.pypi.org/legacy/ dist/*
@@ -60,7 +83,7 @@ View at:
 https://test.pypi.org/project/chove/0.0.1/
 ```
 
-Lo testamos:
+## Probar, probar, probar
 
 ```console
 $ podman run -it python:3.6 bash
@@ -89,11 +112,19 @@ Noche 80%
 >>>
 ```
 
-5. Versiones
+## Versiones
 
-6. Otras ayudas para usuarios: README, registro de cambios, documentación...
+- Nunca se sobreescribe un archivo.
 
-# Referencias
+# Continuará...
+
+## Más
+
+- README con formato, registro de cambios, documentación...
+- Dependencias
+- Compilación
+
+## Referencias
 
 - PyPI de pruebas https://test.pypi.org/
 
@@ -104,8 +135,8 @@ Noche 80%
 - Proyectos de ejemplo: https://github.com/pypa/sampleproject
   o https://github.com/ionelmc/python-nameless
 
-\_ `src` o no `src` https://hynek.me/articles/testing-packaging/ y
-https://blog.ionelmc.ro/2014/05/25/python-packaging/
+- `src` o no `src` https://hynek.me/articles/testing-packaging/ y
+  https://blog.ionelmc.ro/2014/05/25/python-packaging/
 
 - Plantillas de cookiecutter:
   https://github.com/ionelmc/cookiecutter-pylibrary/ (`src`)
