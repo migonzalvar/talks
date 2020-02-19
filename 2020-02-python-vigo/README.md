@@ -4,6 +4,8 @@ author: Miguel González
 date: Febrero 2020
 ...
 
+------
+
 # Empezamos
 
 ## Ejemplo
@@ -29,7 +31,7 @@ date: Febrero 2020
 
 - Creamos el paquete fuente.
 
----
+------
 
 ```console
 $ python3 setup.py sdist
@@ -56,7 +58,7 @@ Creating tar archive
 removing 'chove-0.0.1' (and everything under it)
 ```
 
----
+------
 
 - En la carpeta [./dist/](03-setup/dist/) está el paquete
 
@@ -68,25 +70,25 @@ removing 'chove-0.0.1' (and everything under it)
 
   Existe un entorno de [test](https://test.pypi.org/).
 
-----
+------
 
-![](04-pypi/01 - Index.png)
+![1](04-pypi/01-Index.png)
 
-----
+------
 
-![](04-pypi/02 - Log in.png)
+![](04-pypi/02-Log-in.png)
 
-----
+------
 
-![](04-pypi/03 - Your projects.png)
+![](04-pypi/03-Your-projects.png)
 
-----
+------
 
-![](04-pypi/05 - Add API token.png)
+![](04-pypi/05-Add-API-token.png)
 
 ## twine
 
----
+------
 
 ```console
 $ twine upload --repository-url https://test.pypi.org/legacy/ dist/*
