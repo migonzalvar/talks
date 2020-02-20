@@ -132,17 +132,55 @@ Noche 80%
 >>>
 ```
 
+------
+
+¿Y cómo se ejecuta?
+
+------
+
+```console
+$ podman run -it python:3.6 bash
+root@ac72144ab837:/# pip install -i https://test.pypi.org/simple/ chove==0.0.1
+Looking in indexes: https://test.pypi.org/simple/
+Collecting chove==0.0.1
+  Downloading https://test-files.pythonhosted.org/packages/9e/f8/bc40d2d2eeea0e42877b38f8918e21d2fc3b69fb8ce885fc95e0fa5f4cf7/chove-0.0.1-py3-none-any.whl (1.8 kB)
+Installing collected packages: chove
+Successfully installed chove-0.0.1
+root@ac72144ab837:/# python -m chove
+La predicción para 20/02/2020 es:
+
+Mañana 20%
+Tarde 10%
+Noche 5%
+root@ac72144ab837:/# exit
+```
+
 ## Versiones
 
 - Nunca se sobreescribe un archivo.
+
+## Creación automática de scripts
+
+- Se trata de poner:
+
+  ```python
+  entry_points={
+        "console_scripts": [ ....
+  ```
+
+- Resultado: [setup.py](05-entry_points/setup.py)
 
 # Continuará...
 
 ## Más
 
 - README con formato, registro de cambios, documentación...
-- Dependencias
+- Paquetes
+- Dependencias de instalación y de test
+- Dependencias extra
+- _wheel_
 - Compilación
+- ...
 
 ## Referencias
 
@@ -161,3 +199,5 @@ Noche 80%
 - Plantillas de cookiecutter:
   https://github.com/ionelmc/cookiecutter-pylibrary/ (`src`)
   y https://github.com/audreyr/cookiecutter-pypackage (no `src`)
+
+# Gracias
