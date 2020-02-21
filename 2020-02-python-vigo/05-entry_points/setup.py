@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="chove",
-    version="0.0.1",
+    version="0.0.3",
     author="Miguel González",
     author_email="migonzalvar@gmail.com",
     description="Check if it's rainning.",
